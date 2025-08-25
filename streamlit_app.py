@@ -130,7 +130,7 @@ try:
     import torch
     import ultralytics as _ul
     _ultralytics_ver = getattr(_ul, "__version__", "unknown")
-    st.sidebar.info(f"torch: {getattr(torch, '__version__', 'unknown')} | ultralytics: {_ultralytics_ver}")
+    # st.sidebar.info(f"torch: {getattr(torch, '__version__', 'unknown')} | ultralytics: {_ultralytics_ver}")
 except Exception as _e:
     st.sidebar.warning(f"Version check failed: {_e}")
 
