@@ -184,7 +184,7 @@ st.markdown("""
     }
     /* Additional constraint for Streamlit image containers */
     .stImage > div {
-        width: 100% !important;
+        width: 20% !important;
         max-width: 100% !important;
     }
 </style>
