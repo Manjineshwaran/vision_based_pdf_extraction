@@ -224,7 +224,7 @@ if uploaded_file is not None:
             for img_path in entity_files:
                 try:
                     img = Image.open(img_path)
-                    st.image(img, caption=os.path.basename(img_path), use_container_width=True)
+                    st.image(img, caption=os.path.basename(img_path), use_column_width=True)
                 except Exception as e:
                     st.error(f"Error loading image {img_path}: {e}")
             
