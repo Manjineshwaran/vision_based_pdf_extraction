@@ -117,6 +117,15 @@ from PIL import Image
 from main import process_pdf
 from src.config import Config
 
+# Version info for diagnostics
+try:
+    import torch
+    import ultralytics as _ul
+    _ultralytics_ver = getattr(_ul, "__version__", "unknown")
+    st.sidebar.info(f"torch: {getattr(torch, '__version__', 'unknown')} | ultralytics: {_ultralytics_ver}")
+except Exception as _e:
+    st.sidebar.warning(f"Version check failed: {_e}")
+
 # Page configuration
 st.set_page_config(
     page_title="Document Layout Analyzer",
@@ -172,7 +181,14 @@ if uploaded_file is not None:
     if st.button("Analyze Document Layout", type="primary"):
         with st.spinner("Processing document..."):
             # Process the PDF
-            entities = process_pdf(pdf_path)
+            try:
+                entities = process_pdf(pdf_path)
+            except Exception as e:
+                import traceback, sys
+                st.error(f"Model load/processing failed: {e}")
+                tb = "".join(traceback.format_exception(*sys.exc_info()))
+                st.code(tb[:4000])
+                st.stop()
             
             # Store in session state
             st.session_state.entities = entities
