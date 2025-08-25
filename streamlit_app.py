@@ -111,6 +111,14 @@
 # """)
 
 import streamlit as st
+
+# Page configuration - MUST be the first Streamlit command
+st.set_page_config(
+    page_title="Document Layout Analyzer",
+    page_icon="📄",
+    layout="wide"
+)
+
 import os
 import tempfile
 from PIL import Image
@@ -125,13 +133,6 @@ try:
     st.sidebar.info(f"torch: {getattr(torch, '__version__', 'unknown')} | ultralytics: {_ultralytics_ver}")
 except Exception as _e:
     st.sidebar.warning(f"Version check failed: {_e}")
-
-# Page configuration
-st.set_page_config(
-    page_title="Document Layout Analyzer",
-    page_icon="📄",
-    layout="wide"
-)
 
 # Custom CSS
 st.markdown("""
