@@ -149,8 +149,9 @@ st.markdown("""
     .image-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr); /* 4 columns = quarter screen each */
-        gap: 10px;
+        gap: 15px;
         margin-top: 20px;
+        width: 100%;
     }
     .image-container {
         border: 1px solid #ddd;
@@ -158,10 +159,31 @@ st.markdown("""
         padding: 5px;
         text-align: center;
     }
+    /* Force images to respect grid sizing */
+    .stImage {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: block !important;
+    }
     .stImage img {
-        width: 25%  !important;   /* fill its grid cell */
-        height: auto !important;  /* keep aspect ratio */
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100% !important;
+        object-fit: contain !important;
         border-radius: 5px;
+        display: block !important;
+    }
+    /* Ensure grid items don't overflow and maintain quarter size */
+    .image-grid > div {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
+        min-width: 0 !important;
+    }
+    /* Additional constraint for Streamlit image containers */
+    .stImage > div {
+        width: 100% !important;
+        max-width: 100% !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -224,7 +246,7 @@ if uploaded_file is not None:
             for img_path in entity_files:
                 try:
                     img = Image.open(img_path)
-                    st.image(img, caption=os.path.basename(img_path), use_column_width=True)
+                    st.image(img, caption=os.path.basename(img_path), width=200)
                 except Exception as e:
                     st.error(f"Error loading image {img_path}: {e}")
             
