@@ -7,3 +7,4 @@ torchvision==0.16.1
 torchaudio==2.1.1
 ultralytics==8.0.196
 huggingface-hub==0.19.4
+dill>=0.4.0
