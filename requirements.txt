@@ -7,4 +7,5 @@ torchaudio==2.1.1
 ultralytics==8.0.196
 huggingface-hub==0.19.4
 dill>=0.4.0
-opencv-python-headless==4.8.1.78
+opencv-python==4.8.1.78
+numpy>=1.24.0,<1.26.0
